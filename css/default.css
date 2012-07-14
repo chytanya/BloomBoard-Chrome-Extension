@@ -8,7 +8,7 @@
 }
 
 #navigation{
-	background-color: #4B7979;
+	background-color: #000;
 	height: 500px;
 	min-height: 500px;
 	margin: 0px;
@@ -19,18 +19,22 @@
 }
 
 #navigation li a.hover {
-	background-color: transparent;
+	background-color: salmon;
 	border-color: transparent;
 }
 
 #navigation li.active a {
-	background-color: whiteSmoke;
+	background-color: darkSalmon;
+}
+
+.nav li a:hover{
+	background-color: salmon;
 }
 
 .tabs-left > .nav-tabs#navigation  li a{
 	-webkit-border-radius: 8px;
-	margin: 8px 6px;
-	border-radius: 8px;
+	margin: 0px;
+	border-radius: 0px;
 }
 
 #content{
@@ -133,6 +137,14 @@
 	padding: 50px 50px;
 }
 
+#profile .image-wrapper{
+	margin-bottom: 20px;
+}
+
+#profile .image-wrapper img {
+	border-radius: 100px;
+}
+
 .logo-box{
 	padding-left: 30px;
 }
@@ -148,4 +160,9 @@
 
 #login {
 	text-align: center;
+}
+
+#login-failed{
+	margin-top: 10px;
+	display: none;
 }

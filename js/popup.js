@@ -90,7 +90,8 @@ var _webroot = "http://fl-dev.com/";
 		login: function(){
 			var app = new App();
 			var params = { username:  $('#username').val(), password : $('#password').val() } ;
-			app.fetch({ url: _webroot + 'users/iLogin/data.json', data : params, dataType: "jsonp",  success: function (login) { 
+			app.fetch({ url: _webroot + 'users/iLogin/data.json', data : params, dataType: "jsonp",  success: function (login) {
+			console.log('the login data', login); 
 					if(login.attributes.status == 'ok'){
 						data = login.attributes.data;
 						localStorage.setObject('bloomboard.user', data);
@@ -98,7 +99,7 @@ var _webroot = "http://fl-dev.com/";
                   		profileView.renderProfile();
                   		appView.render();
 					}else{
-						alert('login failed');
+						$('#login-failed').show();
 					}
 				}
 			});
@@ -116,6 +117,12 @@ var _webroot = "http://fl-dev.com/";
 			localStorage.removeItem('bloomboard.user');
 			localStorage.removeItem('bloomboard.dashboard');
 			localStorage.removeItem('bloomboard.trainees');
+
+			// destroy dom
+			$('#observations').html();
+			$('#schedule').html();
+			$('#trainees').html();
+			
 			this.showLogin();
 		}
 	});

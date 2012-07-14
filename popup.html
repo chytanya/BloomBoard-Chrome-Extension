@@ -65,7 +65,7 @@
 
 					<div class="row controls">
 	              		<div class="span3 input-prepend">
-	                		<span class="add-on">Password</span><input class="span2" id="password" size="16" type="text">
+	                		<span class="add-on">Password</span><input class="span2" id="password" size="16" type="password">
 	              		</div>
 	            	</div>
 
@@ -75,6 +75,12 @@
 	              		</div>
 	            	</div>
 
+	            	<div class="row controls">
+	            		<div class="span3">
+	            			<div class="alert alert-error" id="login-failed">Login Failed.</div>
+	            		</div>
+	            	</div>
+
 				</fieldset>
 			</div>
 		</script>
@@ -82,7 +88,7 @@
 		<script type="text/template" id="profile-template">
 			
 			<div class="row profile"> 
-				<div class="span3">
+				<div class="span4 image-wrapper">
 					<img src="<%=user.picture %>" />
 				</div>
 
@@ -95,6 +101,7 @@
 				</div>
 
 				<div class="span4">
+					<br />
 					<a href="#" class="btn" id="logout">Logout</a>
 				</div>
 
