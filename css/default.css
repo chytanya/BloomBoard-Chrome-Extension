@@ -106,17 +106,101 @@
 }
 
 /* SCHEDULE TAB */
-.tasks.today {
+
+#schedule .nav-tabs > li {
+	width: 33.33%;
+	text-align: center;
+}
+
+#schedule .nav li a, #schedule .nav li.active a, #schedule .nav li a:hover {
+	border: none;
+	background: whiteSmoke;
+	color: #555;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+#schedule .nav li.active a{
+	border-bottom: 5px solid #08C;
+	color: #08C;
+}
+
+#schedule .tasks.today {
 	list-style: none;
 	text-shadow: 2px 2px 12px #999;
 	font-weight: 500;
 }
 
-.today .task {
+#schedule .today .task {
 	padding: 20px 0px;
-	border-bottom: 1px solid #CCC;
-	box-shadow: 0 0px 2px #AAA;
+	border-bottom: 1px solid #EEE;
+	box-shadow: 0 -1px 0px #DDD;
 }
+
+#schedule .today .task .name .due_time{
+	color: #888;
+	text-shadow: none;
+}
+
+#schedule #events .content{
+	padding: 10px;
+	height: 500px;
+}
+
+#schedule .events li{
+	list-style: none;
+	height: 30px;
+}
+
+#schedule .events .heading{
+	margin-bottom: 10px;
+	background: none;
+	text-shadow: none;
+	color: #09C;
+	/* border-bottom: 1px solid #09C; */
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	font-size: 15px;
+	box-shadow: 0px 0px 0px grey;
+	padding-bottom: 10px;
+	font-weight: 400;
+}
+
+#schedule .time{
+	display: inline;
+	margin: -5px
+}
+
+#schedule .time div{
+	display: inline;
+}
+
+#schedule .time .hour, #schedule .time .minute{
+	color: #666;
+	font-size: 18px;
+	font-weight: bold;
+	margin: -3px;
+}
+
+#schedule .time .meridian{
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: bold;
+	margin: -1px 5px -1px -1px;
+	color: #666;
+}
+
+#schedule .after-tomorrow .event .name {
+	color: #333;
+}
+
+#schedule .after-tomorrow .event .details{
+	font-weight: 600;
+	font-size: 13px;
+	color: #888;
+	padding-top: 3px;
+}
+
 
 /* TRAINEES TAB */
 

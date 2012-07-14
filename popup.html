@@ -15,7 +15,7 @@
 			<div class="span6">				
 				<div class="tabbable tabs-left" >
 					<ul class="nav nav-tabs" id="navigation">
-						<li class="active">
+						<li class="">
 							<a href="#observations" class="nav-icon observations-icon" data-toggle="tab">
 							</a>
 						</li>
@@ -34,9 +34,32 @@
 					</ul>
 					<div class="tab-content" id="content">
 						<div class="tab-pane active" id="observations"></div>
+						
 						<div class="tab-pane" id="schedule">
-							<div class="span12" id="today-tasks"></div>
+
+							<div class="tabbable"> <!-- Only required for left/right tabs -->
+								<ul class="nav nav-tabs">
+							    	<li class="active"><a href="#todo-list" data-toggle="tab">Tasks</a></li>
+							    	<li><a href="#events" data-toggle="tab">Events</a></li>
+							    	<li><a href="#over-due" data-toggle="tab">OverDue</a></li>
+							  	</ul>
+
+							  	<div class="tab-content">
+							    	<div class="tab-pane active" id="todo-list">
+							    		<div class="span5" id="todo-tasks"></div>
+							    	</div>
+							    	<div class="tab-pane" id="events">
+							    		<div class="span5 content"></div>
+							    	</div>
+							    	<div class="tab-pane" id="over-due">
+							    		<div class="span5 content"></div>
+							    	</div>
+							  	</div>
+
+							</div>
+
 						</div>
+
 						<div class="tab-pane" id="trainees"></div>
 						<div class="tab-pane" id="profile"></div>
 					</div>
@@ -110,18 +133,19 @@
 
 		<script type="text/template" id="observations-template">
 			<% _.each(shelf, function(observation){ %>
-				<div class="span12 observation">
+				<div class="span5 observation">
 				<% _.each(observation.activities, function(activity){ %>
 					<div class="row activity-name"><%= activity.name  %> </div>
 					<div class="row thumbnails trainees">
 					<% _.each(activity.teachers, function(teacher){ %>
+					<% console.log('trainee', teacher); %>
 						<a target="_blank" href="<%= _webroot + 'CoachFormalObservations/index/' + teacher.group_id %>">
-							<div class="span12 trainee">
+							<div class="span5 trainee">
 								<div class="row">
 									<div class="span2 thumbnail picture">
 										<img src="<%= teacher.picture_url %>" />
 									</div>
-									<div class="span4">
+									<div class="span3">
 										<span class="name"><%= teacher.first_name + ' ' + teacher.last_name %></span>
 									</div>
 								</div>
@@ -152,20 +176,89 @@
 		</div>
 		</script>
 
-		<script type="text/template" id="today-tasks-template">
+		<script type="text/template" id="todo-tasks-template">
 		<ul class="row tasks today">
 			<% _.each(tasks, function(task){ %>
-				<li class="span12">
+				<% console.log('task', task); %>
+				<li class="span6">
 					<div class="row task">
 						<div class="span5 name">
-							<i class="icon-comment"></i>&nbsp&nbsp;<%=task.label %>
+							<i class="icon-comment"></i>&nbsp&nbsp;<%=task.label %> by <span class="due_time"><%=task.due_time %></span>
 						</div>
 					</div>
 				</li>
 			<% }); %>
 		</ul>
 		</script>
-		
+
+
+		<script type="text/template" id="events-template">
+
+		<ul class="row events today">
+
+			<div class="heading span3"> Today </div>
+			<% _.each(today_events, function(coach_event){ %>
+				<li class="span6">
+					<div class="row event">
+						<div class="span6">
+							<% console.log('today event', coach_event) %>
+						</div>
+					</div>
+				</li>
+			<% }); %>
+
+		</ul>
+
+		<ul class="row events tomorrow">
+			<div class="heading span3"> Tomorrow </div>
+			<% _.each(tomorrow_events, function(coach_event){ %>
+				<li class="span6">
+					<div class="row event">
+						<div class="span6">
+							<i class="icon-time"></i>&nbsp&nbsp;
+							<div class="time">
+								<div class="hour">
+									<%=coach_event.time.h %>:
+								</div>
+								 
+								<div class="minute">
+									<%=(coach_event.time.m < 10 ) ? coach_event.time.m  + '0' :  coach_event.time.m %>
+								</div>
+								 
+								<div class="meridian">
+									<%=coach_event.time.ap %>
+								</div>
+							</div>
+							<%=coach_event.label %>
+						</div>
+					</div>
+				</li>
+			<% }); %>
+
+		</ul>
+
+		<ul class="row events after-tomorrow">
+			<div class="heading span3"> After Tomorrow </div>
+			<% _.each(aftertomorrow_events, function(day_events, day_name){ %>
+				<li class="span6">
+					<% _.each(day_events, function(coach_event){ %>
+						<div class="row event">
+							<div class="span6">
+								<div class="name"><%=coach_event.label %></div>
+								<div class="details">
+									<i class="icon-calendar"></i>&nbsp&nbsp;
+									<%=coach_event.time.h + ":" + coach_event.time.m  + coach_event.time.ap + ' (' + day_name +  ')' %>
+								</div>
+							</div>
+						</div>
+					<% }); %>
+				</li>
+			<% }); %>
+		</ul>
+
+		</script>
+
+
 		<!-- JavaScript and HTML must be in separate files for security. -->
 		<script src="js/jquery-1.7.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

@@ -7,6 +7,7 @@ Storage.prototype.getObject = function(key) {
 }
 
 var _webroot = "http://fl-dev.com/";
+var login = false;
 
 // EXTENSION APP
 	
@@ -29,6 +30,7 @@ var _webroot = "http://fl-dev.com/";
         		var profileView = new ProfileView;
         		profileView.showLogin();
         	}else{
+        		login = true;
         		this.render();
         	}
         },
@@ -148,18 +150,25 @@ var _webroot = "http://fl-dev.com/";
 
 	var ScheduleView = Backbone.View.extend({
 
-		el : $('#schedule #today-tasks'),
+		el : $('#schedule'),
 
 		initialize: function(){},
 
 		events: {},
 
 		render: function(){
-			
+			console.log('in here');
 			var dashboard = localStorage.getObject('bloomboard.dashboard');
-			var todayTasksTemplate = _.template($('#today-tasks-template').html());
-			$(this.el).html( todayTasksTemplate({
-					tasks: dashboard.today_tasks
+			var todoTasksTemplate = _.template($('#todo-tasks-template').html());
+			$(this.el).find('#todo-tasks').html( todoTasksTemplate({
+					tasks: _.union( dashboard.today_tasks, dashboard.upcoming_tasks)
+				}));
+
+			var eventsTemplate = _.template($('#events-template').html());
+			$(this.el).find('#events .content').html( eventsTemplate({
+					today_events: dashboard.today_events,
+					tomorrow_events : dashboard.tomorrow_events,
+					aftertomorrow_events : dashboard.aftertomorrow_events
 				}));
 		}
 	});
@@ -186,6 +195,12 @@ var _webroot = "http://fl-dev.com/";
 
 	// start application
 	appView = new AppView();
+	
+	if(!login){
+		$('a[href="#profile"]').tab('show');
+	}else{
+		$('a[href="#observations"]').tab('show');
+	}
 
 
 /*
