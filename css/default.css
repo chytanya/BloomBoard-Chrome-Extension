@@ -1,0 +1,151 @@
+.nav li.active a {
+    outline: none;
+}
+
+.img {
+	height:36px; 
+	width:36px;
+}
+
+#navigation{
+	background-color: #4B7979;
+	height: 500px;
+	min-height: 500px;
+	margin: 0px;
+}
+
+#navigation li a.nav-icon {
+	min-width: 30px;
+}
+
+#navigation li a.hover {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+#navigation li.active a {
+	background-color: whiteSmoke;
+}
+
+.tabs-left > .nav-tabs#navigation  li a{
+	-webkit-border-radius: 8px;
+	margin: 8px 6px;
+	border-radius: 8px;
+}
+
+#content{
+	background-color: whiteSmoke;
+	height: 500px;
+	min-height: 500px;
+	overflow-x: none;
+	overflow-y: auto;
+}
+
+.nav-icon{
+	padding: 10px;
+	padding: 20px;
+	background-size: 75%;
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	background-position: center center;
+}
+
+.nav-icon.bloomboard-icon{
+	background-image: url('../img/logo-centered.png');
+}
+
+
+.nav-icon.observations-icon{
+	padding-top: 20px;
+	background-image: url('../img/glasses.png');
+}
+
+.nav-icon.trainees-icon{
+	background-image: url('../img/trainees.png');
+}
+
+.nav-icon.schedule-icon{
+	background-image: url('../img/calendar.png');
+}
+
+.nav-icon.user-icon{
+	background-image: url('../img/user.png');
+}
+
+
+/* OBSERVATIONS TAB */
+
+.activity-name {
+	padding: 10px 0 10px 10px;
+	font-weight: bold;
+	font-size: 16px;
+	color: white;
+	background-color: #666;
+	text-shadow: 0px 2px 2px black;
+	margin-bottom: 20px;
+}
+
+#observations .trainee .picture{
+	width: 50px;
+}
+
+#observations .observation .trainee{
+	padding: 10px 0px;
+}
+
+#observations .observation .trainee .name {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 30px;
+}
+
+/* SCHEDULE TAB */
+.tasks.today {
+	list-style: none;
+	text-shadow: 2px 2px 12px #999;
+	font-weight: 500;
+}
+
+.today .task {
+	padding: 20px 0px;
+	border-bottom: 1px solid #CCC;
+	box-shadow: 0 0px 2px #AAA;
+}
+
+/* TRAINEES TAB */
+
+#trainees .trainee {
+	padding: 10px;
+	text-align: center;
+}
+
+#trainees .trainee a{
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+/* PROFILE TAB */
+
+#profile {
+	padding: 50px 50px;
+}
+
+.logo-box{
+	padding-left: 30px;
+}
+
+#profile .profile{
+	text-align: center;
+}
+
+#profile .span3 {
+	text-align: center;
+}
+
+
+#login {
+	text-align: center;
+}

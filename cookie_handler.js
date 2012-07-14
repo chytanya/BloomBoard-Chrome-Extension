@@ -1,0 +1,1 @@
+console.log('the document cookie', document.cookie);

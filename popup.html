@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+   		<title>BloomBoard Chrome Extension</title>
+   		<style>
+     	body {
+       		overflow-x:hidden;
+     	}	
+   		</style>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="css/default.css" type="text/css">
+ 	</head>
+ 	<body>
+		<div class="row" id="app">
+			<div class="span6">				
+				<div class="tabbable tabs-left" >
+					<ul class="nav nav-tabs" id="navigation">
+						<li class="active">
+							<a href="#observations" class="nav-icon observations-icon" data-toggle="tab">
+							</a>
+						</li>
+						<li class="">
+							<a href="#schedule" class="nav-icon schedule-icon" data-toggle="tab">
+							</a>
+						</li>
+						<li class="">
+							<a href="#trainees" class="nav-icon trainees-icon" data-toggle="tab">
+							</a>
+						</li>
+						<li class="">
+							<a href="#profile" class="nav-icon user-icon" data-toggle="tab">
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content" id="content">
+						<div class="tab-pane active" id="observations"></div>
+						<div class="tab-pane" id="schedule">
+							<div class="span12" id="today-tasks"></div>
+						</div>
+						<div class="tab-pane" id="trainees"></div>
+						<div class="tab-pane" id="profile"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/template" id="login-template">
+			<div class="span3"> 
+				<fieldset>
+					<div class="row logo-box">
+						<ul class="span3 thumbnails">
+					        <li class="span2">
+					          	<a href="#">
+					            	<img class="logo" src="img/logo-centered.png">
+					          	</a>
+					        </li>
+						</ul>
+		            </div>
+		
+					<div class="row controls">
+	              		<div class="span3 input-prepend">
+	                		<span class="add-on">Username</span><input class="span2" id="username" size="16" type="text">
+	              		</div>
+	            	</div>
+
+					<div class="row controls">
+	              		<div class="span3 input-prepend">
+	                		<span class="add-on">Password</span><input class="span2" id="password" size="16" type="text">
+	              		</div>
+	            	</div>
+
+	            	<div class="row controls">
+	              		<div class="span3">
+	                		<a class="btn btn-primary" id="login" href="#">Login</a>
+	              		</div>
+	            	</div>
+
+				</fieldset>
+			</div>
+		</script>
+
+		<script type="text/template" id="profile-template">
+			
+			<div class="row profile"> 
+				<div class="span3">
+					<img src="<%=user.picture %>" />
+				</div>
+
+				<div class="span4">
+					<span><%=user.first_name + ' ' + user.last_name %></span>
+				</div>
+
+				<div class="span4">
+					<span><%=user.email %></span>
+				</div>
+
+				<div class="span4">
+					<a href="#" class="btn" id="logout">Logout</a>
+				</div>
+
+			</div>
+		</script>
+
+		<script type="text/template" id="observations-template">
+			<% _.each(shelf, function(observation){ %>
+				<div class="span12 observation">
+				<% _.each(observation.activities, function(activity){ %>
+					<div class="row activity-name"><%= activity.name  %> </div>
+					<div class="row thumbnails trainees">
+					<% _.each(activity.teachers, function(teacher){ %>
+						<a target="_blank" href="<%= _webroot + 'CoachFormalObservations/index/' + teacher.group_id %>">
+							<div class="span12 trainee">
+								<div class="row">
+									<div class="span2 thumbnail picture">
+										<img src="<%= teacher.picture_url %>" />
+									</div>
+									<div class="span4">
+										<span class="name"><%= teacher.first_name + ' ' + teacher.last_name %></span>
+									</div>
+								</div>
+							</div>
+						</a>
+					<% }); %>
+					</div>
+				<% }); %>
+				</div>
+			<% }); %>
+		</script>
+
+		<script type="text/template" id="trainees-template">
+		<div class="span5">
+			<ul class="row thumbnails trainees">
+				<% _.each(trainees, function(trainee){ %>
+					<li class="span2 trainee">
+			      		<a target="_blank" href="<%=_webroot + 'teacherDashboard/index/'+ trainee.id %>" class="thumbnail picture">
+			      			<div>
+			      				<img src="<%=trainee.picture %>" alt="" />
+			      				<br /><br />
+			      				<span ><%= trainee.first_name + ' ' + trainee.last_name %></span>
+			      			</div>
+			      		</a>
+			  		</li>
+				<% }); %>
+			</ul>
+		</div>
+		</script>
+
+		<script type="text/template" id="today-tasks-template">
+		<ul class="row tasks today">
+			<% _.each(tasks, function(task){ %>
+				<li class="span12">
+					<div class="row task">
+						<div class="span5 name">
+							<i class="icon-comment"></i>&nbsp&nbsp;<%=task.label %>
+						</div>
+					</div>
+				</li>
+			<% }); %>
+		</ul>
+		</script>
+		
+		<!-- JavaScript and HTML must be in separate files for security. -->
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-tab.js"></script>
+		<script src="js/underscore-1.3.3.js"></script>
+		<script src="js/backbone.0.9.1-min.js"></script>
+		<script src="js/deep-model.js"></script>
+   		<script src="js/popup.js"></script>
+ 	</body>
+</html>
